@@ -53,10 +53,6 @@ class PromoViewModel @Inject constructor(
         _selectedAdress.value = adress
     }
 
-    fun searchAdress(query: String) = viewModelScope.launch {
-        _adressSuggestions.value = searchAdressUseCase(query)
-    }
-
     fun onQueryChanged(query: String) {
         _searchQuery.value = query
     }

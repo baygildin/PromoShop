@@ -40,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sbaygildin.promoshop.core.R
+import com.sbaygildin.promoshop.core.logging.EventLogger
 import com.sbaygildin.promoshop.core.ui.SFUIText
 import com.sbaygildin.promoshop.domain.model.AdressSuggestion
 import com.sbaygildin.promoshop.domain.repository.AdressRepository
@@ -89,6 +91,7 @@ fun PromoScreen(
             ) {
                 DrawerContent {
                     scope.launch { drawerState.close() }
+                    EventLogger.logClick("Меню закрыто")
                 }
             }
         },
@@ -102,11 +105,18 @@ fun PromoScreen(
                     title = {
                         DropDownAdressList(
                             selectedAddress = selectedAddress,
-                            onAddressClick = { showAddressSearch = true }
+                            onAddressClick = {
+                                showAddressSearch = true
+                                EventLogger.logClick("Нажат выбор адреса")
+                            }
+
                         )
                     },
                     navigationIcon = {
-                        IconButton(onClick = { scope.launch { drawerState.open() } }) {
+                        IconButton(onClick = {
+                            scope.launch { drawerState.open() }
+                            EventLogger.logClick("Меню открыто")
+                        }) {
                             Icon(Icons.Default.Menu, contentDescription = "Menu")
                         }
                     }
@@ -129,7 +139,11 @@ fun PromoScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         ProductSearchBar(
-                            modifier = Modifier.width(335.dp)
+                            modifier = Modifier
+                                .width(335.dp)
+                                .clickable {
+                                    EventLogger.logClick("Нажат поиск товаров")
+                                }
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Image(
@@ -138,7 +152,9 @@ fun PromoScreen(
                             modifier = Modifier
                                 .size(35.dp)
                                 .align(Alignment.CenterVertically)
-                                .clickable { }
+                                .clickable {
+                                    EventLogger.logClick("Добавление в избранное")
+                                }
                         )
                     }
                 }
@@ -147,18 +163,21 @@ fun PromoScreen(
                 item { PromoBannersSection() }
                 item { Spacer(modifier = Modifier.height(24.dp)) }
                 item {
-                    Spacer(modifier = Modifier.height(24.dp))
                     Row(
-                        Modifier.fillMaxWidth()
+                        Modifier
+                            .fillMaxWidth()
                             .padding(bottom = 16.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
 
                     ) {
                         Text(
-                            "Акции",
+                            stringResource(R.string.section_promotions),
                             modifier = Modifier
                                 .padding(start = 15.dp)
-                                .align(Alignment.CenterVertically),
+                                .align(Alignment.CenterVertically)
+                                .clickable {
+                                    EventLogger.logClick("Нажат раздел 'Акции'")
+                                },
                             style = TextStyle(
 
 
@@ -167,22 +186,24 @@ fun PromoScreen(
                                 fontFamily = SFUIText,
                                 fontWeight = FontWeight.W400,
                                 color = Color.Black
+                            ),
+
                             )
-                        )
                         Box(
                             modifier = Modifier
                                 .background(
                                     Color(0xFFF4F4F4),
                                     RoundedCornerShape(12.dp)
-
-
                                 )
                                 .padding(end = 15.dp)
                                 .align(Alignment.CenterVertically)
+                                .clickable {
+                                    EventLogger.logClick("Нажато Смотреть всё")
+                                }
                         )
                         {
                             Text(
-                                "Смотреть все",
+                                stringResource(R.string.section_watch_all),
                                 style = TextStyle(
                                     fontSize = 12.sp,
                                     lineHeight = 20.sp,
@@ -198,10 +219,13 @@ fun PromoScreen(
 
                 item { DiscountProductsSection() }
                 item {
-
                     Text(
-                        "Каталог",
-                        modifier = Modifier.padding(start = 15.dp),
+                        stringResource(R.string.section_catalog),
+                        modifier = Modifier
+                            .padding(start = 15.dp)
+                            .clickable {
+                                EventLogger.logClick("Нажат раздел 'Каталог'")
+                            },
                         style = TextStyle(
                             fontSize = 20.sp,
                             lineHeight = 25.sp,
@@ -211,42 +235,21 @@ fun PromoScreen(
                         )
                     )
                 }
-                item{ Spacer(modifier = Modifier.height(16.dp))}
+                item { Spacer(modifier = Modifier.height(16.dp)) }
                 item {
-
-
                     CatalogSections()
-
                 }
             }
         }
         if (showAddressSearch) {
             AddressSearchModal(
                 viewModel = viewModel,
-                onDismiss = { showAddressSearch = false }
+                onDismiss = {
+                    showAddressSearch = false
+                    EventLogger.logClick("Закрыто окно поиска адреса")
+                }
             )
         }
 
-    }
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun PromoScreenPreview() {
-    val fakeViewModel = remember { createFakePromoViewModel() }
-    PromoScreen(viewModel = fakeViewModel)
-}
-
-fun createFakePromoViewModel(): PromoViewModel {
-    return PromoViewModel(SearchAdressUseCase(FakeAdressRepository()))
-}
-
-
-class FakeAdressRepository : AdressRepository {
-    override suspend fun searchAdress(query: String): List<AdressSuggestion> {
-        return listOf(
-            AdressSuggestion("Москва, Красная площадь", "Москва", "МОС"),
-            AdressSuggestion("Санкт-Петербург, Невский проспект", "СПБ", "Центр")
-        )
     }
 }

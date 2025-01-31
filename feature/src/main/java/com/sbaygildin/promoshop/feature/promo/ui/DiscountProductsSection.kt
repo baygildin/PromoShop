@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.sbaygildin.promoshop.core.R
 import com.sbaygildin.promoshop.feature.promo.model.ProductItem
 
@@ -14,7 +15,7 @@ fun DiscountProductsSection() {
     val promotionItems = listOf(
 
         ProductItem(
-            "Черные спагетти с морепродуктами (большая порция)",
+            stringResource(R.string.product_black_spaghetti),
             R.drawable.ic_discount_1,
             "230г",
             "360 ₽",
@@ -23,7 +24,7 @@ fun DiscountProductsSection() {
             true
         ),
         ProductItem(
-            "Казаречче с индейкой и томатами",
+            stringResource(R.string.product_casarecce),
             R.drawable.ic_discount_2,
             "230г",
             "200 ₽",
@@ -32,7 +33,7 @@ fun DiscountProductsSection() {
             false
         ),
         ProductItem(
-            "Равиоли с грибами",
+            stringResource(R.string.product_ravioli),
             R.drawable.ic_discount_3,
             "230г",
             "1200 ₽",
@@ -41,7 +42,7 @@ fun DiscountProductsSection() {
             true
         ),
         ProductItem(
-            "Черные спагетти с морепродуктам (большая порция)",
+            stringResource(R.string.product_casarecce),
             R.drawable.ic_discount_1,
             "230г",
             "360 ₽",
@@ -50,7 +51,7 @@ fun DiscountProductsSection() {
             false
         ),
         ProductItem(
-            "Казаречче с индейкой и томатами",
+            stringResource(R.string.product_black_spaghetti),
             R.drawable.ic_discount_2,
             "230г",
             "200 ₽",
@@ -59,7 +60,7 @@ fun DiscountProductsSection() {
             true
         ),
         ProductItem(
-            "Равиоли с грибами",
+            stringResource(R.string.product_ravioli),
             R.drawable.ic_discount_3,
             "230г",
             "1200 ₽",
@@ -68,7 +69,7 @@ fun DiscountProductsSection() {
             true
         ),
         ProductItem(
-            "Равиоли с грибами",
+            stringResource(R.string.product_casarecce),
             R.drawable.ic_discount_1,
             "230г",
             "1200 ₽",

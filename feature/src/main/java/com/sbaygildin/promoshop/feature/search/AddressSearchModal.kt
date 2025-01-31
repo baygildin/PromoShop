@@ -32,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.sbaygildin.promoshop.core.R
 import com.sbaygildin.promoshop.domain.model.AdressSuggestion
@@ -45,9 +46,9 @@ fun AddressSearchModal(
     val queryState = rememberTextFieldState()
     var expanded by rememberSaveable { mutableStateOf(true) }
     val currentLocationSuggestion = AdressSuggestion(
-        value = "Текущее местоположение",
-        unrestrictedValue = "Ваше текущее местоположение",
-        region = "Геолокация"
+        value = stringResource(R.string.current_location),
+        unrestrictedValue = stringResource(R.string.your_current_location),
+        region = stringResource(R.string.geolocation)
     )
     val suggestions =
         listOf(currentLocationSuggestion) + viewModel.adressSuggestions.collectAsState().value
@@ -77,15 +78,15 @@ fun AddressSearchModal(
                         expanded = expanded,
                         onExpandedChange = { expanded = it },
                         onSearch = { expanded = false },
-                        placeholder = { Text("Поиск адреса") },
+                        placeholder = { Text(stringResource(R.string.search_address)) },
                         leadingIcon = {
-                            Icon(Icons.Default.Search, contentDescription = "Поиск")
+                            Icon(Icons.Default.Search, contentDescription = stringResource(R.string.search))
                         },
                         trailingIcon = {
                             if (queryState.text.isNotEmpty()) {
                                 Icon(
                                     Icons.Default.Close,
-                                    contentDescription = "Очистить",
+                                    contentDescription = stringResource(R.string.clear),
                                     modifier = Modifier.clickable {
                                         queryState.setTextAndPlaceCursorAtEnd("")
                                     }
@@ -119,7 +120,7 @@ fun AddressSearchModal(
                             leadingContent = {
                                 Icon(
                                     painter = painterResource(
-                                        id = if (suggestion.value == "Текущее местоположение")
+                                        id = if (suggestion.value == stringResource(R.string.current_location))
                                             R.drawable.location_near
                                         else
                                             R.drawable.location_on

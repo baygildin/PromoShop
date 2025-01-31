@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -53,7 +54,7 @@ fun DrawerContent(onItemClick: (String) -> Unit) {
                 Spacer(modifier = Modifier.width(32.dp))
                 Column {
                     Text(
-                        text = "Иван Иванов",
+                        text = stringResource(R.string.ivan_ivanov),
                         style = TextStyle(
                             fontSize = 16.sp,
                             lineHeight = 20.sp,
@@ -64,7 +65,7 @@ fun DrawerContent(onItemClick: (String) -> Unit) {
                         textAlign = TextAlign.Center
                     )
                     Text(
-                        text = "+7 996 198-74-95",
+                        text = stringResource(R.string.phone_number),
                         style = TextStyle(
                             fontSize = 16.sp,
                             lineHeight = 20.sp,
@@ -81,10 +82,10 @@ fun DrawerContent(onItemClick: (String) -> Unit) {
             HorizontalDivider()
 
             Spacer(modifier = Modifier.height(16.dp))
-            TextButton(onClick = { EventLogger.logClick("Нажата кнопка оплаты")}) {
+            TextButton(onClick = { EventLogger.logClick("Нажата кнопка оплаты") }) {
                 Column(modifier = Modifier.padding(0.dp)) {
                     Text(
-                        text = "Оплата",
+                        text = stringResource(R.string.payment),
                         style = TextStyle(
                             fontSize = 16.sp,
                             lineHeight = 20.sp,
@@ -96,7 +97,7 @@ fun DrawerContent(onItemClick: (String) -> Unit) {
                     )
 
                     Text(
-                        text = "Карта *4567",
+                        text = stringResource(R.string.card_number),
                         modifier = Modifier.padding(bottom = 24.dp),
                         style = TextStyle(
                             fontSize = 14.sp,
@@ -111,13 +112,20 @@ fun DrawerContent(onItemClick: (String) -> Unit) {
             }
 
             val menuItems = listOf(
-                "Мои адреса", "Мои заказы",
-                "Избранное", "Новости", "Купоны", "О нас", "Пригласить друзей", "Настройки"
+                stringResource(R.string.my_addresses),
+                stringResource(R.string.my_orders),
+                stringResource(R.string.favorites),
+                stringResource(R.string.news),
+                stringResource(R.string.coupons),
+                stringResource(R.string.about_us),
+                stringResource(R.string.invite_friends),
+                stringResource(R.string.settings)
             )
             menuItems.forEach { item ->
                 TextButton(onClick = {
                     EventLogger.logClick("Выбрано позиция меню: $item")
-                    onItemClick(item) }) {
+                    onItemClick(item)
+                }) {
                     Text(
                         modifier = Modifier.padding(bottom = 24.dp),
                         text = item,
@@ -153,7 +161,7 @@ fun DrawerContent(onItemClick: (String) -> Unit) {
                 )
 
                 Text(
-                    text = "Связаться с нами",
+                    text = stringResource(R.string.contact_us),
                     style = TextStyle(
                         fontSize = 16.sp,
                         lineHeight = 15.sp,

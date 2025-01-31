@@ -18,7 +18,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.sbaygildin.promoshop.core.logging.EventLogger
+import com.sbaygildin.promoshop.core.R
 
 
 @Composable
@@ -27,10 +30,13 @@ fun ProductSearchBar(modifier: Modifier = Modifier) {
 
     TextField(
         value = text.value,
-        onValueChange = { text.value = it },
+        onValueChange = {
+            text.value = it
+            EventLogger.logClick("Введен запрос товара: $it")
+        },
         placeholder = {
             Text(
-                text = "Поиск товаров",
+                text = stringResource(R.string.products_search),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
             )
@@ -41,10 +47,13 @@ fun ProductSearchBar(modifier: Modifier = Modifier) {
         singleLine = true,
         trailingIcon = {
             if (text.value.isNotEmpty()) {
-                IconButton(onClick = { text.value = "" }) {
+                IconButton(onClick = {
+                    text.value = ""
+                    EventLogger.logClick("Очищен поиск товаров")
+                }) {
                     Icon(
                         Icons.Filled.Clear,
-                        contentDescription = "Clear",
+                        contentDescription = stringResource(R.string.search),
                         tint = MaterialTheme.colorScheme.onSurface
                     )
                 }
