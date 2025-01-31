@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ivan_ivanov">Иван Иванов</string>
+    <string name="phone_number">+7 996 198-74-95</string>
+    <string name="payment">Оплата</string>
+    <string name="card_number">Карта *4567</string>
+    <string name="my_addresses">Мои адреса</string>
+    <string name="my_orders">Мои заказы</string>
+    <string name="favorites">Избранное</string>
+    <string name="news">Новости</string>
+    <string name="coupons">Купоны</string>
+    <string name="about_us">О нас</string>
+    <string name="invite_friends">Пригласить друзей</string>
+    <string name="settings">Настройки</string>
+    <string name="contact_us">Связаться с нами</string>
+    <string name="current_location">Текущее местоположение</string>
+    <string name="your_current_location">Ваше текущее местоположение</string>
+    <string name="geolocation">Геолокация</string>
+    <string name="enter_address">Введите адрес</string>
+    <string name="search">Поиск</string>
+    <string name="delivery">Доставка</string>
+    <string name="change_address">Изменить адрес</string>
+    <string name="clear">Очистить</string>
+    <string name="search_address">Поиск адреса</string>
+    <string name="catalog_sets">Наборы</string>
+    <string name="catalog_pizza">Пицца</string>
+    <string name="catalog_pasta">Паста</string>
+    <string name="catalog_risotto">Ризотто</string>
+    <string name="catalog_salads">Салаты</string>
+    <string name="catalog_semi_finished">Полуфабрикаты</string>
+    <string name="catalog_desserts">Десерты</string>
+    <string name="catalog_additions">Добавки к блюдам</string>
+    <string name="catalog_drinks">Напитки</string>
+    <string name="meal_summer_picnic">Летний пикник</string>
+    <string name="meal_summer_lunch">Летний обед</string>
+    <string name="meal_breakfast">На завтрак</string>
+    <string name="meal_dinner">На ужин</string>
+    <string name="meal_lunch">На обед</string>
+    <string name="meal_brunch">На ланч</string>
+    <string name="meal_snack">Перекус с собой</string>
+    <string name="product_black_spaghetti">Черные спагетти с морепродуктами (большая порция)</string>
+    <string name="product_casarecce">Казаречче с индейкой и томатами</string>
+    <string name="product_ravioli">Равиоли с грибами</string>
+    <string name="products_search">Поиск товаров</string>
+    <string name="new_thing">Новинка</string>
+    <string name="in_honor_of_the_opening">В честь открытия</string>
+    <string name="discount_20">Скидка 20%</string>
+    <string name="section_promotions">Акции</string>
+    <string name="section_catalog">Каталог</string>
+    <string name="section_watch_all">Смотреть все</string>
+
+</resources>

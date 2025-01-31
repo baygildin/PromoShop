@@ -1,6 +1,7 @@
 package com.sbaygildin.promoshop.feature.promo.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,11 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sbaygildin.promoshop.core.R
+import com.sbaygildin.promoshop.core.logging.EventLogger
 import com.sbaygildin.promoshop.core.ui.Roboto
 
 
@@ -42,6 +45,7 @@ fun PromoBannersSection() {
                 modifier = Modifier
                     .padding(8.dp)
                     .size(290.dp, 115.dp)
+                    .clickable { EventLogger.logClick("Нажат баннер") }
             ) {
                 Box(
                     modifier = Modifier.fillMaxSize()
@@ -62,7 +66,7 @@ fun PromoBannersSection() {
                         if (image == R.drawable.ic_promobanner_1) {
 
                             Text(
-                                text = "В честь открытия",
+                                text = stringResource(R.string.in_honor_of_the_opening),
                                 style = TextStyle(
                                     fontSize = 15.sp,
                                     lineHeight = 25.sp,
@@ -72,7 +76,7 @@ fun PromoBannersSection() {
                                 )
                             )
                             Text(
-                                text = "Скидка 20%",
+                                text = stringResource(R.string.discount_20),
                                 style = TextStyle(
                                     fontSize = 25.sp,
                                     lineHeight = 25.sp,

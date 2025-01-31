@@ -26,13 +26,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sbaygildin.promoshop.core.logging.EventLogger
 import com.sbaygildin.promoshop.core.ui.SFUIText
+import com.sbaygildin.promoshop.core.R
 import com.sbaygildin.promoshop.feature.promo.model.ProductItem
 
 @Composable
@@ -46,6 +49,9 @@ fun PromotionItemCard(item: ProductItem) {
             .padding(8.dp)
             .width(102.dp)
             .height(208.dp)
+            .clickable {
+                EventLogger.logClick("Нажат акционный товар: ${item.name}")
+            }
     ) {
         Column(
 
@@ -85,7 +91,7 @@ fun PromotionItemCard(item: ProductItem) {
                                 .height(15.dp)
                         ) {
                             Text(
-                                text = "Новинка",
+                                text = stringResource(R.string.new_thing),
                                 style = TextStyle(
                                     fontSize = 10.sp,
                                     lineHeight = 15.sp,
@@ -172,7 +178,10 @@ fun PromotionItemCard(item: ProductItem) {
                                 modifier = Modifier
                                     .size(30.dp)
                                     .background(Color(0xFFFFD334), RoundedCornerShape(50))
-                                    .clickable { if (quantity > 0) quantity-- }
+                                    .clickable {
+                                        if (quantity > 0) quantity--
+                                        EventLogger.logClick("Убавлено из корзины единица товара: ${item.name}. Итого: $quantity")
+                                    }
                             ) {
                                 Text(
                                     text = "-",
@@ -239,7 +248,10 @@ fun PromotionItemCard(item: ProductItem) {
                             modifier = Modifier
                                 .size(30.dp)
                                 .background(Color(0xFFFFD334), RoundedCornerShape(50))
-                                .clickable { quantity++ }
+                                .clickable {
+                                    quantity++
+                                    EventLogger.logClick("Добавлено в корзину единица товара: ${item.name}. Итого: $quantity")
+                                }
                         ) {
                             Text(
                                 text = "+",
